@@ -1,0 +1,12 @@
+{
+  "name": "digital-marketing-ipsum",
+  "version": "0.0.1",
+  "description": "Digital Marketing buzzword generator written in TypeScript",
+  "main": "index.js",
+  "repository": "git@github.com:andrewcorp/digital-marketing-ipsum.git",
+  "author": "Andrew Ellis <andrew@upstartpark.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^2.5.2"
+  }
+}

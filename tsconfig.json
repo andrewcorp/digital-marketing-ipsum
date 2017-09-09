@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
     "noImplicitAny": true,
+    "outDir": "javascript",
     "removeComments": true,
-    "outFile": "javascript/index.js",
-        "sourceMap": true
-    },
+    "target": "es5"
+  },
   "files": [
-    "typescript/index.ts"
+    "typescript/index.ts",
   ]
 }
