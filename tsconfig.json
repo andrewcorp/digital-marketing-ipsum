@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "removeComments": true,
+    "outFile": "javascript/index.js",
+        "sourceMap": true
+    },
+  "files": [
+    "typescript/index.ts"
+  ]
+}
