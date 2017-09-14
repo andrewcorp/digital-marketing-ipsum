@@ -1,4 +1,5 @@
 /// <reference path="./typings.d.ts" />
+
 import * as verbs from '../data/verbs.json';
 import * as nouns from '../data/nouns.json';
 import * as joins from '../data/joins.json';
