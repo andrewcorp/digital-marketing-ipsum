@@ -1,37 +1,52 @@
-interface Options {
-    paragraphs: number,
-    sentenceMin: number,
-    sentenceMax: number,
+interface Opts {
+    paragraphs?: number,
+    sentenceMin?: number,
+    sentenceMax?: number,
 }
 
 export default class Ipsum{
 
-    verbs: Array<string>;
-    nouns: Array<string>;
-    joiningWords: Array<string>;
-    actions: Array<string>;
-    options: Options;
+    private verb: Array<string>;
+    private noun: Array<string>;
+    private join: Array<string>;
+    private action: Array<string>;
+    private opts: Opts;
 
-    constructor(){
+    constructor(opts: Opts){
         // Hard code this for now. Move to json later.
-        this.verbs = ['leveraging', 'engaging', 'building', 'targeting'];
-        this.nouns = ['key demographics', 'growth channels', 'social', 'big data'];
-        this.joiningWords = ['in order to', 'so that we', 'with the aim to', 'while remembering to'];
-        this.actions = ['build ROI', 're-target key demographics', 'funnel users', 'blow minds'];
+        this.verb = ['leveraging', 'engaging', 'building', 'targeting'];
+        this.noun = ['key demographics', 'growth channels', 'social', 'big data'];
+        this.join = ['in order to', 'so that we', 'with the aim to', 'while remembering to'];
+        this.action = ['build ROI', 're-target key demographics', 'funnel users', 'blow minds'];
 
-        // Default options
-        this.options = {
-            paragraphs: 3,
-            sentenceMin: 3,
-            sentenceMax: 3,
-        }
+        let defaultOpts = {paragraphs: 3, sentenceMin: 3, sentenceMax: 6};
+
+        // Merge defaults and opts
+        this.opts = {...defaultOpts, ...opts};
     }
 
-    pickRandom(arr: Array<string>): string{
+    private titleCase(str: string): string{
+        return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+    }
+
+    private random(arr: Array<string>): string{
         return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    generate(options?: Options): string{
-        return `Lorem ipsum ${this.pickRandom(this.verbs)}`;
+    private range(n: number): Array<number>{
+        return [...Array(n).keys()]
+    }
+
+    private generateSentence(): string{
+        return `${this.titleCase(this.random(this.verb))} ${this.random(this.noun)} ${this.random(this.join)} ${this.random(this.action)}`
+    }
+
+    private generateParagraph(): string{
+        let sentences = Math.floor(Math.random() * (this.opts.sentenceMax - this.opts.sentenceMin + 1)) + this.opts.sentenceMin;
+        return this.range(sentences).map(i => this.generateSentence()).join('. ');
+    }
+
+    public generate(): string{
+        return this.range(this.opts.paragraphs).map(i => this.generateParagraph()).join('.\n\n');
     }
 }
