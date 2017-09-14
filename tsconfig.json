@@ -5,7 +5,7 @@
     "noImplicitAny": true,
     "outDir": "javascript",
     "removeComments": true,
-    "target": "es5"
+    "target": "es6"
   },
   "files": [
     "typescript/index.ts",
