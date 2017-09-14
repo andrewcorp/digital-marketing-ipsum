@@ -1,11 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const verbs = require("../data/verbs.json");
+const nouns = require("../data/nouns.json");
+const joins = require("../data/joins.json");
+const actions = require("../data/actions.json");
 class Ipsum {
     constructor(opts) {
-        this.verb = ['leveraging', 'engaging', 'building', 'targeting'];
-        this.noun = ['key demographics', 'growth channels', 'social', 'big data'];
-        this.join = ['in order to', 'so that we', 'with the aim to', 'while remembering to'];
-        this.action = ['build ROI', 're-target key demographics', 'funnel users', 'blow minds'];
+        this.verbs = verbs;
+        this.nouns = nouns;
+        this.joins = joins;
+        this.actions = actions;
         let defaultOpts = { paragraphs: 3, sentenceMin: 3, sentenceMax: 6 };
         this.opts = Object.assign({}, defaultOpts, opts);
     }
@@ -19,7 +23,7 @@ class Ipsum {
         return [...Array(n).keys()];
     }
     generateSentence() {
-        return `${this.titleCase(this.random(this.verb))} ${this.random(this.noun)} ${this.random(this.join)} ${this.random(this.action)}`;
+        return `${this.titleCase(this.random(this.verbs))} ${this.random(this.nouns)} ${this.random(this.joins)} ${this.random(this.actions)}`;
     }
     generateParagraph() {
         let sentences = Math.floor(Math.random() * (this.opts.sentenceMax - this.opts.sentenceMin + 1)) + this.opts.sentenceMin;

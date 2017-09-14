@@ -1,3 +1,9 @@
+/// <reference path="./typings.d.ts" />
+import * as verbs from '../data/verbs.json';
+import * as nouns from '../data/nouns.json';
+import * as joins from '../data/joins.json';
+import * as actions from '../data/actions.json';
+
 interface Opts {
     paragraphs?: number,
     sentenceMin?: number,
@@ -6,18 +12,17 @@ interface Opts {
 
 export default class Ipsum{
 
-    private verb: Array<string>;
-    private noun: Array<string>;
-    private join: Array<string>;
-    private action: Array<string>;
+    private verbs: any;
+    private nouns: any;
+    private joins: any;
+    private actions: any;
     private opts: Opts;
 
     constructor(opts: Opts){
-        // Hard code this for now. Move to json later.
-        this.verb = ['leveraging', 'engaging', 'building', 'targeting'];
-        this.noun = ['key demographics', 'growth channels', 'social', 'big data'];
-        this.join = ['in order to', 'so that we', 'with the aim to', 'while remembering to'];
-        this.action = ['build ROI', 're-target key demographics', 'funnel users', 'blow minds'];
+        this.verbs = verbs;
+        this.nouns = nouns;
+        this.joins = joins;
+        this.actions = actions;
 
         let defaultOpts = {paragraphs: 3, sentenceMin: 3, sentenceMax: 6};
 
@@ -38,7 +43,7 @@ export default class Ipsum{
     }
 
     private generateSentence(): string{
-        return `${this.titleCase(this.random(this.verb))} ${this.random(this.noun)} ${this.random(this.join)} ${this.random(this.action)}`
+        return `${this.titleCase(this.random(this.verbs))} ${this.random(this.nouns)} ${this.random(this.joins)} ${this.random(this.actions)}`
     }
 
     private generateParagraph(): string{
