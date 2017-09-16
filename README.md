@@ -5,7 +5,7 @@ Lorem ipsum generator with cool digital marketing buzzwords written in TypeScrip
 
 ## Setup
 
-Install TypeScript using either ```npm install -g typescript``` or ```yarn add global typescript``` depending on your life choices.
+Install TypeScript using either ```npm install -g typescript``` or ```yarn add global typescript``` depending on your preferences.
 
 
 ## Compiling
