@@ -1,11 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const helpers_1 = require("./helpers");
 const verbs = require("../data/verbs.json");
 const nouns = require("../data/nouns.json");
 const joins = require("../data/joins.json");
 const actions = require("../data/actions.json");
 class Ipsum {
     constructor(opts) {
+        this.helpers = new helpers_1.default();
         this.verbs = verbs;
         this.nouns = nouns;
         this.joins = joins;
@@ -13,24 +15,16 @@ class Ipsum {
         let defaultOpts = { paragraphs: 3, sentenceMin: 3, sentenceMax: 6 };
         this.opts = Object.assign({}, defaultOpts, opts);
     }
-    titleCase(str) {
-        return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
-    }
-    random(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
-    }
-    range(n) {
-        return [...Array(n).keys()];
-    }
     generateSentence() {
-        return `${this.titleCase(this.random(this.verbs))} ${this.random(this.nouns)} ${this.random(this.joins)} ${this.random(this.actions)}`;
+        let verb = this.helpers.titleCase(this.helpers.randomFromArray(this.verbs)), noun = this.helpers.randomFromArray(this.nouns), join = this.helpers.randomFromArray(this.joins), action = this.helpers.randomFromArray(this.actions);
+        return `${verb} ${noun} ${join} ${action}`;
     }
     generateParagraph() {
-        let sentences = Math.floor(Math.random() * (this.opts.sentenceMax - this.opts.sentenceMin + 1)) + this.opts.sentenceMin;
-        return this.range(sentences).map(i => this.generateSentence()).join('. ');
+        let sentences = this.helpers.randomIntInRange(this.opts.sentenceMin, this.opts.sentenceMax);
+        return this.helpers.range(sentences).map(i => this.generateSentence()).join('. ');
     }
     generate() {
-        return this.range(this.opts.paragraphs).map(i => this.generateParagraph()).join('.\n\n');
+        return this.helpers.range(this.opts.paragraphs).map(i => this.generateParagraph()).join('.\n\n');
     }
 }
 exports.default = Ipsum;

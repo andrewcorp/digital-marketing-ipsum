@@ -1,5 +1,7 @@
 /// <reference path="./typings.d.ts" />
 
+import Helpers from './helpers';
+
 import * as verbs from '../data/verbs.json';
 import * as nouns from '../data/nouns.json';
 import * as joins from '../data/joins.json';
@@ -13,6 +15,7 @@ interface Opts {
 
 export default class Ipsum{
 
+    private helpers: Helpers;
     private verbs: any;
     private nouns: any;
     private joins: any;
@@ -20,6 +23,8 @@ export default class Ipsum{
     private opts: Opts;
 
     constructor(opts: Opts){
+        this.helpers = new Helpers();
+
         this.verbs = verbs;
         this.nouns = nouns;
         this.joins = joins;
@@ -31,28 +36,21 @@ export default class Ipsum{
         this.opts = {...defaultOpts, ...opts};
     }
 
-    private titleCase(str: string): string{
-        return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
-    }
-
-    private random(arr: Array<string>): string{
-        return arr[Math.floor(Math.random() * arr.length)];
-    }
-
-    private range(n: number): Array<number>{
-        return [...Array(n).keys()]
-    }
-
     private generateSentence(): string{
-        return `${this.titleCase(this.random(this.verbs))} ${this.random(this.nouns)} ${this.random(this.joins)} ${this.random(this.actions)}`
+        let verb = this.helpers.titleCase(this.helpers.randomFromArray(this.verbs)),
+            noun = this.helpers.randomFromArray(this.nouns),
+            join = this.helpers.randomFromArray(this.joins),
+            action = this.helpers.randomFromArray(this.actions);
+
+        return `${verb} ${noun} ${join} ${action}`;
     }
 
     private generateParagraph(): string{
-        let sentences = Math.floor(Math.random() * (this.opts.sentenceMax - this.opts.sentenceMin + 1)) + this.opts.sentenceMin;
-        return this.range(sentences).map(i => this.generateSentence()).join('. ');
+        let sentences = this.helpers.randomIntInRange(this.opts.sentenceMin, this.opts.sentenceMax);
+        return this.helpers.range(sentences).map(i => this.generateSentence()).join('. ');
     }
 
     public generate(): string{
-        return this.range(this.opts.paragraphs).map(i => this.generateParagraph()).join('.\n\n');
+        return this.helpers.range(this.opts.paragraphs).map(i => this.generateParagraph()).join('.\n\n');
     }
 }
