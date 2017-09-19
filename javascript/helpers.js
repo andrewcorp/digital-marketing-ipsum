@@ -1,17 +1,24 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class Helpers {
-    titleCase(str) {
-        return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+var Helpers = (function () {
+    function Helpers() {
     }
-    randomFromArray(arr) {
+    Helpers.prototype.titleCase = function (str) {
+        return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+    };
+    Helpers.prototype.randomFromArray = function (arr) {
         return arr[Math.floor(Math.random() * arr.length)];
-    }
-    randomIntInRange(min, max) {
+    };
+    Helpers.prototype.randomIntInRange = function (min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-    range(n) {
-        return [...Array(n).keys()];
-    }
-}
+    };
+    Helpers.prototype.range = function (n) {
+        var tmp = [];
+        for (var i = 0; i < n; i++) {
+            tmp.push(i);
+        }
+        return tmp;
+    };
+    return Helpers;
+}());
 exports.default = Helpers;

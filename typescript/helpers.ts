@@ -13,6 +13,10 @@ export default class Helpers{
     }
 
     public range(n: number): Array<number>{
-        return [...Array(n).keys()]
+      let tmp = [];
+      for(let i = 0; i  < n; i++){
+        tmp.push(i);
+      }
+      return tmp;
     }
 }
