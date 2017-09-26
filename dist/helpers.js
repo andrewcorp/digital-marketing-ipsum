@@ -21,4 +21,5 @@ var Helpers = (function () {
     };
     return Helpers;
 }());
-exports.default = Helpers;
+var helpers = new Helpers();
+exports.default = helpers;

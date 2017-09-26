@@ -3,11 +3,8 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "outDir": "javascript",
+    "outDir": "dist",
     "removeComments": true,
     "target": "es5"
-  },
-  "files": [
-    "typescript/index.ts",
-  ]
+  }
 }

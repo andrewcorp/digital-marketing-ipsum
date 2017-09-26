@@ -1,0 +1,22 @@
+{
+  "name": "digital-marketing-ipsum",
+  "version": "1.0.0",
+  "description": "Lorem ipsum generator with cool digital marketing buzzwords",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "types": "typescript/typings.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewcorp/digital-marketing-ipsum.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewcorp/digital-marketing-ipsum/issues"
+  },
+  "homepage": "https://github.com/andrewcorp/digital-marketing-ipsum#readme"
+}
