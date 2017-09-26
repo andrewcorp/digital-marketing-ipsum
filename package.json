@@ -1,6 +1,6 @@
 {
   "name": "digital-marketing-ipsum",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Lorem ipsum generator with cool digital marketing buzzwords",
   "main": "dist/index.js",
   "scripts": {
